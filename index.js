@@ -11,7 +11,7 @@ var filename = process.argv[2];
 var buffer = fs.readFileSync(filename);
 var offset = 0;
 
-var pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z_]*\.png$/;
+var pattern = /^building_lib\/.*(buffad|collectible).*\.png$/;
 
 while (offset < buffer.length) {
 	var readUTF = function() {
