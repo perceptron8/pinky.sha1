@@ -24,6 +24,6 @@ while (offset < buffer.length) {
 	var file = readUTF();
 	var hash = readUTF();
 	if (file.match(pattern)) {
-		console.log("\""+hash+"\"" + ", // " + file);
+		console.log(JSON.stringify(hash) + ",", "//", file);
 	}
 }
