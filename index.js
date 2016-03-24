@@ -11,7 +11,7 @@ var filename = process.argv[2];
 var buffer = fs.readFileSync(filename);
 var offset = 0;
 
-var pattern = /^building_lib\/.*(buffad|collectible).*\.png$/;
+var pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z0-9_]*\.png$/;
 
 while (offset < buffer.length) {
 	var readUTF = function() {
@@ -24,6 +24,6 @@ while (offset < buffer.length) {
 	var file = readUTF();
 	var hash = readUTF();
 	if (file.match(pattern)) {
-		console.log(hash, file);
+		console.log("\""+hash+"\"" + ", // " + file);
 	}
 }
