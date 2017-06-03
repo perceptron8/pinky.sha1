@@ -1,29 +1,29 @@
 "use strict";
 
-var fs = require("fs");
+const fs = require("fs");
 
 if (process.argv.length != 3) {
-	console.error("usage: node index.js filename");
+	console.error(`usage: node ${process.argv[1]} filename`);
 	process.exit(-1);
 }
 
-var filename = process.argv[2];
-var buffer = fs.readFileSync(filename);
-var offset = 0;
+const buffer = fs.readFileSync(`${process.argv[2]}`);
 
-var pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z0-9_]*\.png$/;
+let offset = 0;
+const readUTF = () => {
+	const length = buffer.readUInt16BE(offset);
+	offset += 2;
+	const string = buffer.slice(offset, offset + length).toString();
+	offset += length;
+	return string;
+};
+
+const pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z0-9_]*\.png$/;
 
 while (offset < buffer.length) {
-	var readUTF = function() {
-		var length = buffer.readUInt16BE(offset);
-		offset += 2;
-		var string = buffer.toString("utf8", offset, offset + length);
-		offset += length;
-		return string;
-	};
-	var file = readUTF();
-	var hash = readUTF();
+	const file = readUTF();
+	const hash = readUTF();
 	if (file.match(pattern)) {
-		console.log(JSON.stringify(hash) + ",", "//", file);
+		console.log(`"${hash}", // ${file}`);
 	}
 }

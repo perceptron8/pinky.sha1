@@ -1,4 +1,4 @@
 pinky.sha1
 ==========
 
-Sneaky hash mapping reader.
+Sneaky file hashing mapping extractor.
