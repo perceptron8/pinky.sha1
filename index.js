@@ -26,4 +26,4 @@ while (offset < buffer.length) {
 	}
 }
 
-console.log(JSON.stringify(mapping, null, 2));
+console.log(mapping);
