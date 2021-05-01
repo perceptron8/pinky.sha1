@@ -6,6 +6,8 @@ if (process.argv.length != 3) {
 }
 
 const buffer = fs.readFileSync(`${process.argv[2]}`);
+const pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z0-9_]*\.png$/;
+const mapping = [];
 
 let offset = 0;
 const readUTF = () => {
@@ -16,12 +18,12 @@ const readUTF = () => {
 	return string;
 };
 
-const pattern = /^building_lib\/(buffad_)?c(ollectible)?_[a-z0-9_]*\.png$/;
-
 while (offset < buffer.length) {
 	const file = readUTF();
 	const hash = readUTF();
 	if (file.match(pattern)) {
-		console.log(`"${hash}", // ${file}`);
+		mapping.push([file, hash]);
 	}
 }
+
+console.log(JSON.stringify(mapping, null, 2));
