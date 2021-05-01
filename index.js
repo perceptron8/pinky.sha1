@@ -1,6 +1,4 @@
-"use strict";
-
-const fs = require("fs");
+import fs from "fs";
 
 if (process.argv.length != 3) {
 	console.error(`usage: node ${process.argv[1]} filename`);
