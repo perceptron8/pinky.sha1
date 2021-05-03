@@ -18,4 +18,4 @@ while (offset < buffer.length) {
 	mapping.push([file, hash]);
 }
 
-console.log(JSON.stringify(mapping, null, 2));
+console.log(JSON.stringify(mapping, null, "\t"));

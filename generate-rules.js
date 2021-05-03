@@ -18,4 +18,4 @@ for (const [file, hash] of mapping) {
 	}
 }
 
-console.log(JSON.stringify(rules, null, 2));
+console.log(JSON.stringify(rules, null, "\t"));
